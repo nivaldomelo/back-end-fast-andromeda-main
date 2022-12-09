@@ -20,6 +20,7 @@ banco: List[Animal] = []
 @app.get('/animais')
 def listar_animais():
     return banco
+# Teste
 
 
 @app.get('/animais/{animal_id}')
