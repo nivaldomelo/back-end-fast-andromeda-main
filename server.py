@@ -23,12 +23,30 @@ def listar_animais():
 
 
 @app.get('/animais/{animal_id}')
-def obter_animal(animal_id):
-    return {'id': animal_id}
+def obter_animal(animal_id: str):
+    for animal in banco:
+        if animal_id == animal_id:
+            return animal
+    return {'erro': 'Animal nao localizado'}
+
+
+@app.delete('/animais/{animal_id}')
+def remover_animal(animal_id: str):
+    posicao = -1
+    for index, animal in enumerate(banco):
+        if animal_id == animal_id:
+            posicao = index
+            break
+
+    if posicao != -1:
+        banco.pop(posicao)
+        return {'msg': 'Animal removido com sucesso'}
+
+    return {'erro': 'Animal nao localizado'}
 
 
 @app.post('/animais')
 def criar_animal(animal: Animal):
-    animal.id = uuid4()
+    animal.id = str(uuid4())
     banco.append(animal)
     return None
